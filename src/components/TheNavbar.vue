@@ -7,6 +7,7 @@
       </h1>
       <div>
         <button
+          @click="handleClick"
           class="
             mx-2
             bg-gray-500
@@ -63,7 +64,23 @@
 </template>
 
 <script>
-export default {};
+import { useRouter } from 'vue-router';
+import useLogout from '../composable/useLogout';
+
+export default {
+  setup() {
+    const { appLogout, error } = useLogout();
+    const router = useRouter();
+
+    const handleClick = async () => {
+      await appLogout();
+      console.log('User logged out!!!');
+      router.push({ name: 'Login' });
+    };
+
+    return { handleClick };
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>
