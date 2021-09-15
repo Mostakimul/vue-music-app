@@ -1,8 +1,18 @@
 <template>
+  <TheNavbar />
   <div class="conatier">
     <router-view />
   </div>
 </template>
+
+<script>
+import TheNavbar from '@/components/TheNavbar.vue';
+export default {
+  components: {
+    TheNavbar,
+  },
+};
+</script>
 
 <style>
 .conatier {

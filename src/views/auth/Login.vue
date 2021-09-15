@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-50 mt-5 rounded-md p-5 w-3/4 mx-auto">
+  <div class="bg-gray-50 mt-5 rounded-md p-5 w-3/4 mx-auto shadow-xl">
     <h3 class="my-2 text-xl font-medium">Login Form</h3>
     <form @submit.prevent="handleSubmit" class="bg-gray-200 p-2 rounded-lg">
       <input

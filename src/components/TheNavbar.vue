@@ -1,0 +1,69 @@
+<template>
+  <div class="bg-gray-50 py-3 px-2 my-10 rounded-lg shadow-xl">
+    <nav class="flex items-center justify-between">
+      <img src="@/assets/music.png" alt="music logo" />
+      <h1 class="text-2xl font-medium">
+        <router-link :to="{ name: 'Home' }">Vue Music App</router-link>
+      </h1>
+      <div>
+        <button
+          class="
+            mx-2
+            bg-gray-500
+            hover:bg-gray-200
+            py-1
+            px-3
+            rounded-lg
+            text-gray-100
+            hover:text-gray-500
+            shadow-md
+            transition-all
+            duration-200
+          "
+        >
+          Logout
+        </button>
+        <router-link
+          :to="{ name: 'Signup' }"
+          class="
+            mx-2
+            bg-gray-500
+            hover:bg-gray-200
+            py-1
+            px-3
+            rounded-lg
+            text-gray-100
+            hover:text-gray-500
+            shadow-md
+            transition-all
+            duration-200
+          "
+          >Signup</router-link
+        >
+        <router-link
+          :to="{ name: 'Login' }"
+          class="
+            mx-2
+            bg-gray-500
+            hover:bg-gray-200
+            py-1
+            px-3
+            rounded-lg
+            text-gray-100
+            hover:text-gray-500
+            shadow-md
+            transition-all
+            duration-200
+          "
+          >Login</router-link
+        >
+      </div>
+    </nav>
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style lang="scss" scoped></style>
