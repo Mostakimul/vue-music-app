@@ -1,7 +1,10 @@
 <template>
   <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
     <h4 class="text-center text-xl font-medium mb-3">Create New Playlist</h4>
-    <form @submit.prevent="handleSubmit" class="bg-gray-200 p-2 rounded-lg shadow-lg">
+    <form
+      @submit.prevent="handleSubmit"
+      class="bg-gray-200 p-2 rounded-lg shadow-lg"
+    >
       <input
         v-model="title"
         type="text"
@@ -17,44 +20,99 @@
         required
       ></textarea>
       <!-- custom Label design -->
-        <input @change="showFileName" type="file" class="hidden" id="fileUpload" />
+      <input
+        @change="showFileName"
+        type="file"
+        class="hidden"
+        id="fileUpload"
+      />
       <label
-      for="fileUpload"
-        class="inline-block my-5 bg-gray-300 text-gray-700 border-2 border-dashed border-gray-700 p-2 rounded-lg cursor-pointer"
+        for="fileUpload"
+        class="
+          inline-block
+          my-5
+          bg-gray-300
+          text-gray-700
+          border-2 border-dashed border-gray-700
+          p-2
+          rounded-lg
+          cursor-pointer
+        "
+        >Upload playlist cover</label
       >
-        Upload playlist cover
-      </label>
-      <span class="mx-2 text-yellow-600">{{ fileName ? fileName : "No file choosen..." }}</span>
+      <span class="mx-2 text-yellow-600">{{
+        fileName ? fileName : 'No file choosen...'
+      }}</span>
       <!-- errors -->
-      <div class="text-red-500"></div>
+      <div class="text-red-500">{{ fileError }}</div>
       <!-- Save button -->
       <button
-        class="block mx-auto mt-4 mb-4 bg-red-500 hover:bg-gray-200 py-2 px-5 rounded-lg text-gray-100 hover:text-red-500 shadow-md transition-all duration-200"
-      >Create</button>
+        class="
+          block
+          mx-auto
+          mt-4
+          mb-4
+          bg-red-500
+          hover:bg-gray-200
+          py-2
+          px-5
+          rounded-lg
+          text-gray-100
+          hover:text-red-500
+          shadow-md
+          transition-all
+          duration-200
+        "
+      >
+        Create
+      </button>
     </form>
   </div>
 </template>
 
-<script>import { ref } from "vue";
+<script>
+import { ref } from 'vue';
 
 export default {
   setup() {
-    const title = ref('')
-    const description = ref('')
-    const fileName = ref('')
+    const title = ref('');
+    const description = ref('');
+    const fileName = ref('');
+    const file = ref(null);
+    const fileError = ref(null);
+    // filetypes
+    const fileTypes = ['image/png', 'image/jpeg'];
 
+    // handle user form
     const handleSubmit = () => {
-      console.log(title.value, description.value);
-    }
+      if (file.value) {
+        console.log(title.value, description.value, file.value);
+      }
+    };
+    // handle file upload
+    const showFileName = (e) => {
+      const selectedFile = e.target.files[0];
+      fileName.value = selectedFile.name;
 
-    const showFileName =(e) => {
-      fileName.value = e.target.files[0].name
-    }
+      if (selectedFile && fileTypes.includes(selectedFile.type)) {
+        file.value = selectedFile;
+        fileError.value = null;
+      } else {
+        file.value = null;
+        fileError.value = 'Please select correct image (png, jpeg)';
+      }
+    };
 
-    return { title, description, handleSubmit, showFileName, fileName }
-  }
+    return {
+      title,
+      description,
+      handleSubmit,
+      showFileName,
+      fileName,
+      fileError,
+    };
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>
